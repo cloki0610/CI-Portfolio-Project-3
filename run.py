@@ -91,6 +91,7 @@ class GameBoard():
         if user is player 1, create a new object and assign into player1
         if user is player 2, create a new player object and assign into player2
         """
+        # Player 1
         if player_id == 1:
             if player_type == '1':
                 self.player1 = Player("O", "Player 1")
@@ -104,6 +105,7 @@ class GameBoard():
             else:
                 print("Input Invalid, please try again!!!")
                 return False
+        # Player 2
         elif player_id == 2:
             if player_type == '1':
                 self.player2 = Player("X", "Player 2")
@@ -117,13 +119,14 @@ class GameBoard():
             else:
                 print("Input Invalid, please try again!!!")
                 return False
+        # prepared for some unexpected error
         else:
             print("Invalid player id!!!")
             return False
 
     def empty_slots(self):
         """
-        Check how many empty slots and return a number
+        Use a for loop to check how many empty slots and return a number
         """
         count = 0
         for i in range(len(self.board)):
@@ -141,31 +144,47 @@ class GameBoard():
         # reset present gameboard
         self.board = [None for i in range(9)]
         self.winner = None
+        # assign the current player to a variable
         turn = self.player1
+        # loop until there is no empty slots or someone win the match
         while self.empty_slots() > 0:
             self.clear_terminal()
+            # print the contents
             print(f"{turn.pname}'s ({turn.letter}) turn:".center(56))
             self.print_board()
+            # get the move from user or computer
             c_move = self.get_move(turn)
+            # add a sign to the board
             self.board[c_move - 1] = turn.letter
+            # check if someone win the match
             self.check_winner(turn)
+            # switch to next turn
             if turn == self.player1:
                 turn = self.player2
             else:
                 turn = self.player1
             time.sleep(2)
+
+        # if no winner and the board is filled, call result method
         self.result(self.winner)
 
     def check_winner(self, player):
+        """
+        take a player object as argument and check the self.board array,
+        if player won the match than set the self.winner and call result method
+        if no winner then continue the process
+        """
         pass
 
     def result(self, winner):
         self.clear_terminal()
         self.print_board()
+        # get the winner and print the relevant text
         if self.winner is None:
             print("It is a tie!!!".center(56))
         else:
             print(f"The Winner is... {winner}!!!")
+        # get y or n to begin another match or close the programme
         try_again = None
         while try_again != "y" or try_again != "n":
             try_again = input("Try again? (Y/N)\n".center(58)).lower()
