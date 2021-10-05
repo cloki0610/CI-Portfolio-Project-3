@@ -40,7 +40,7 @@ class EasyComputer():
         self.pname = pname
 
     def __str__(self):
-        return "Easy Computer"
+        return "Computer(Easy)"
 
     def make_move(self):
         return random.randint(1, 9)
@@ -55,7 +55,7 @@ class NormalComputer():
         self.pname = pname
 
     def __str__(self):
-        return "Normal Computer"
+        return "Computer(Normal)"
 
     def make_move(self):
         return random.randint(1, 9)
@@ -263,13 +263,13 @@ class GameBoard():
         print("Select player1: ")
         valid = False
         while valid is not True:
-            player1 = input("1. Player 2. Computer 3. Computer(Hard)\n")
+            player1 = input("1.Player 2.Computer(Easy) 3.Computer(Normal)\n")
             valid = self.add_new_player(player1, 1)
         # Create the player 2, and use a while loop to validate input value
         print("Select player2: ")
         valid = False
         while valid is not True:
-            player2 = input("1. Player 2. Computer 3. Computer(Hard)\n")
+            player2 = input("1.Player 2.Computer(Easy) 3.Computer(Normal)\n")
             valid = self.add_new_player(player2, 2)
         # Print out the player object in the board
         print(f"Player 1: {self.player1} use {self.player1.letter}")
