@@ -156,8 +156,10 @@ class GameBoard():
             c_move = self.get_move(turn)
             # add a sign to the board
             self.board[c_move - 1] = turn.letter
-            # check if someone win the match
-            self.check_winner(turn)
+            # check if someone win the match, then call result
+            if self.check_winner(turn.letter) is True:
+                self.winner = turn.pname
+                self.result()
             # switch to next turn
             if turn == self.player1:
                 turn = self.player2
@@ -166,24 +168,42 @@ class GameBoard():
             time.sleep(2)
 
         # if no winner and the board is filled, call result method
-        self.result(self.winner)
+        self.result()
 
-    def check_winner(self, player):
+    def check_winner(self, letter):
         """
         take a player object as argument and check the self.board array,
         if player won the match than set the self.winner and call result method
         if no winner then continue the process
         """
-        pass
+        # check all row on the board
+        for i in range(3):
+            row = self.board[i * 3:(i + 1) * 3]
+            if all([i == letter for i in row]):
+                return True
+        # check column in the board
+        for i in range(3):
+            col = [self.board[i + j * 3] for j in range(3)]
+            if all([i == letter for i in col]):
+                return True
+        # check diagonal
+        diagonal_left = [self.board[0], self.board[4], self.board[8]]
+        diagonal_right = [self.board[2], self.board[4], self.board[6]]
+        if all([i == letter for i in diagonal_left]):
+            return True
+        if all([i == letter for i in diagonal_right]):
+            return True
+        # if pass all loops return false
+        return False
 
-    def result(self, winner):
+    def result(self):
         self.clear_terminal()
         self.print_board()
         # get the winner and print the relevant text
         if self.winner is None:
             print("It is a tie!!!".center(56))
         else:
-            print(f"The Winner is... {winner}!!!")
+            print(f"The Winner is... {self.winner}!!!".center(58))
         # get y or n to begin another match or close the programme
         try_again = None
         while try_again != "y" or try_again != "n":
