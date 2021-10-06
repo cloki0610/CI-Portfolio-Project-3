@@ -1,6 +1,7 @@
 import random
 import os
 import time
+import math
 
 
 class Player():
@@ -66,13 +67,73 @@ class NormalComputer():
         if empty_slots == 9:
             return random.randint(1, len(game_board.board))
         else:
-            return random.randint(1, len(game_board.board))
+            return self.find_move(game_board)
 
-    def minimax(self, game_board, empty_slots):
+    def find_move(self, state):
         """
         use recursive and minimax algorithm to calculate the best move
+        1. find avaliable move
+        2. use for loop to every avaliable move
+        3. make a move
+        4. use find_best score to get the best score
+        5. undo the move
+        6. compare the best score,
+            if this is the best score, then assign move as best_move
+        7. return the best move
         """
-        pass
+        best_move = 0
+        best_score = -math.inf
+        avaliable_move = [i for i, spot in enumerate(state.board)
+                          if spot is None]
+        for move in avaliable_move:
+            state.board[move] = self.letter
+            score = self.find_best_score(state, state.empty_slots(),
+                                         self.letter, False)
+            state.board[move] = None
+            if score > best_score:
+                best_score = score
+                best_move = move
+        return best_move + 1
+
+    def find_best_score(self, state, empty_slots, current_letter, isMyTurn):
+        """
+        User recursion to find the best score and store the scores into
+        a array, and return the max score if it is computer's turn,
+        else return a minimum score if it is his opponent's turn
+        """
+        # base case
+        if empty_slots == 0 and state.winner is None:
+            return 0
+        elif state.winner is not None:
+            return 1 * (empty_slots + 1) if state.winner == self.pname \
+                else -1 * (empty_slots + 1)
+
+        scores = []
+        avaliable_move = [i for i, spot in enumerate(state.board)
+                          if spot is None]
+        for move in avaliable_move:
+            # switch user
+            if current_letter == "O":
+                current_letter = "X"
+            else:
+                current_letter = "O"
+            # set a move
+            state.board[move] = current_letter
+            # check winner
+            if state.check_winner(current_letter) is True:
+                if current_letter == "O":
+                    state.winner = "Player 1"
+                else:
+                    state.winner = "Player 2"
+            # use recursion to find all next move
+            scores.append(self.find_best_score(state, state.empty_slots(),
+                                               current_letter, not isMyTurn))
+            # undo all  changes
+            state.board[move] = None
+            state.winner = None
+            current_letter = self.letter
+        # return best score
+        return max(scores) if isMyTurn else min(scores)
 
 
 class GameBoard():
