@@ -105,8 +105,7 @@ class NormalComputer():
         if empty_slots == 0 and state.winner is None:
             return 0
         elif state.winner is not None:
-            return 1 * (empty_slots + 1) if state.winner == self.pname \
-                else -1 * (empty_slots + 1)
+            return empty_slots + 1 if isMyTurn else -1 * (empty_slots + 1)
 
         scores = []
         avaliable_move = [i for i, spot in enumerate(state.board)
