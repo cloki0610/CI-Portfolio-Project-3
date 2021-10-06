@@ -14,7 +14,7 @@ class Player():
     def __str__(self):
         return "A user"
 
-    def make_move(self, board):
+    def make_move(self, game_board):
         """
         Get a user input and check the value
         if not in range then raise error message
@@ -42,8 +42,8 @@ class EasyComputer():
     def __str__(self):
         return "Computer(Easy)"
 
-    def make_move(self, board):
-        return random.randint(1, len(board))
+    def make_move(self, game_board):
+        return random.randint(1, len(game_board.board))
 
 
 class NormalComputer():
@@ -57,8 +57,22 @@ class NormalComputer():
     def __str__(self):
         return "Computer(Normal)"
 
-    def make_move(self, board):
-        return random.randint(1, len(board))
+    def make_move(self, game_board):
+        """
+        If the board is empty, return a random number as choise,
+        if the board is not empty, calculate the best move and return a number
+        """
+        empty_slots = game_board.empty_slots()
+        if empty_slots == 9:
+            return random.randint(1, len(game_board.board))
+        else:
+            return random.randint(1, len(game_board.board))
+
+    def minimax(self, game_board, empty_slots):
+        """
+        use recursive and minimax algorithm to calculate the best move
+        """
+        pass
 
 
 class GameBoard():
@@ -77,12 +91,12 @@ class GameBoard():
         then return the number,
         if invalid print a message and require another number
         """
-        move = player.make_move(self.board)
+        move = player.make_move(self)
         # get another input if the slot is not null
         while self.board[move - 1] is not None and self.winner is None:
             if isinstance(player, Player):
                 print('\033[31mInput invalid, please try again!!!\033[0m')
-            move = player.make_move(self.board)
+            move = player.make_move(self)
         return move
 
     def add_new_player(self, player_type, player_id):
