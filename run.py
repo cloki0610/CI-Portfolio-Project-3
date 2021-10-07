@@ -87,8 +87,7 @@ class NormalComputer():
                           if spot is None]
         for move in avaliable_move:
             state.board[move] = self.letter
-            score = self.find_best_score(state, state.empty_slots(),
-                                         self.letter, False)
+            score = self.find_best_score(state, self.letter, False)
             state.board[move] = None
             if score > best_score:
                 best_score = score
@@ -135,7 +134,7 @@ class NormalComputer():
             else:
                 current_letter = "O"
         # return best score
-        return max(scores) if isMyTurn else min(scores)
+        return sum(scores)
 
 
 class GameBoard():
