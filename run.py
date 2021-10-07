@@ -95,21 +95,21 @@ class NormalComputer():
                 best_move = move
         return best_move + 1
 
-    def find_best_score(self, state, empty_slots, current_letter, isMyTurn):
+    def find_best_score(self, state, current_letter, isMyTurn, count=0):
         """
         User recursion to find the best score and store the scores into
         a array, and return the max score if it is computer's turn,
         else return a minimum score if it is his opponent's turn
         """
-        # base case
-        if empty_slots == 0 and state.winner is None:
-            return 0
-        elif state.winner is not None:
-            return empty_slots + 1 if isMyTurn else -1 * (empty_slots + 1)
-
-        scores = []
         avaliable_move = [i for i, spot in enumerate(state.board)
                           if spot is None]
+        # base case
+        if len(avaliable_move) == 0 and state.winner is None:
+            return 0
+        elif state.winner is not None:
+            return count + 1 if state.winner == self.pname else -1 * (count+1)
+
+        scores = []
         for move in avaliable_move:
             # switch user
             if current_letter == "O":
@@ -125,12 +125,15 @@ class NormalComputer():
                 else:
                     state.winner = "Player 2"
             # use recursion to find all next move
-            scores.append(self.find_best_score(state, state.empty_slots(),
-                                               current_letter, not isMyTurn))
+            scores.append(self.find_best_score(state, current_letter,
+                                               not isMyTurn, count))
             # undo all  changes
             state.board[move] = None
             state.winner = None
-            current_letter = self.letter
+            if current_letter == "O":
+                current_letter = "X"
+            else:
+                current_letter = "O"
         # return best score
         return max(scores) if isMyTurn else min(scores)
 
