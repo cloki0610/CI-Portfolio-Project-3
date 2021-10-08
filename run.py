@@ -117,6 +117,7 @@ class NormalComputer():
                 current_letter = "O"
             # set a move
             state.board[move] = current_letter
+            count += 1
             # check winner
             if state.check_winner(current_letter) is True:
                 if current_letter == "O":
@@ -128,6 +129,7 @@ class NormalComputer():
                                                not isMyTurn, count))
             # undo all  changes
             state.board[move] = None
+            count -= 1
             state.winner = None
             if current_letter == "O":
                 current_letter = "X"
