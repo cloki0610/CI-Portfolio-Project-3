@@ -65,7 +65,7 @@ class NormalComputer():
         """
         empty_slots = game_board.empty_slots()
         if empty_slots == 9:
-            return random.randint(1, len(game_board.board))
+            return random.choice([1, 3, 7, 9])
         else:
             return self.find_move(game_board)
 
@@ -106,7 +106,8 @@ class NormalComputer():
         if len(avaliable_move) == 0 and state.winner is None:
             return 0
         elif state.winner is not None:
-            return count + 1 if state.winner == self.pname else -1 * (count+1)
+            return len(avaliable_move) + 1 if state.winner == self.pname \
+                else -1 * (len(avaliable_move) + 1)
 
         scores = []
         for move in avaliable_move:
