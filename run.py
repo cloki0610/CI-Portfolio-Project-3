@@ -25,12 +25,12 @@ class Player():
         while type(user_input) is not int or user_input < 1 or user_input > 9:
             try:
                 user_input = int(input("Input a number between 1-9: \n"
-                                 .center(87)))
+                                 .center(83)))
                 if user_input < 1 or user_input > 9:
                     raise ValueError
             except Exception:
                 print('\033[31mInput invalid, please try again!!!\033[0m'
-                      .center(79))
+                      .center(75))
         return user_input
 
 
@@ -161,7 +161,7 @@ class GameBoard():
         while self.board[move - 1] is not None and self.winner is None:
             if isinstance(player, Player):
                 print('\033[31mInput invalid, please try again!!!\033[0m'
-                      .center(79))
+                      .center(75))
             move = player.make_move(self)
         return move
 
@@ -229,7 +229,7 @@ class GameBoard():
         while self.empty_slots() > 0:
             self.clear_terminal()
             print(("\033[103m\033[30m" + " " * 13 + "***TIC TAC TOE***" +
-                   " " * 13 + "\033[0m").center(99))
+                   " " * 13 + "\033[0m").center(95))
             # print the contents
             standard_output = f"{turn.pname}'s ({turn.letter}) turn:"
             if turn.letter == "O":
@@ -238,7 +238,7 @@ class GameBoard():
             else:
                 letter_output = "\033[41m\033[37m" + " " * 12 + \
                                 standard_output + " " * 11 + "\033[0m"
-            print((letter_output).center(99))
+            print((letter_output).center(95))
             self.print_board()
             # get the move from user or computer
             c_move = self.get_move(turn)
@@ -290,20 +290,20 @@ class GameBoard():
         # get the winner and print the relevant text
         if self.winner is None:
             print("")
-            print("\033[103m\033[30m It is a tie!!! \033[0m\n".center(101))
+            print("\033[103m\033[30m It is a tie!!! \033[0m\n".center(97))
             print("")
         elif self.winner == "Player 1":
-            print(("\033[44m" + " " * 43 + "\033[0m").center(93))
+            print(("\033[44m" + " " * 43 + "\033[0m").center(89))
             print(("\033[44m" + " " * 8 +
                    f"The Winner is... {self.winner}!!!" +
-                   " " * 7 + "\033[0m").center(93))
-            print(("\033[44m" + " " * 43 + "\033[0m").center(93))
+                   " " * 7 + "\033[0m").center(89))
+            print(("\033[44m" + " " * 43 + "\033[0m").center(89))
         elif self.winner == "Player 2":
-            print(("\033[41m" + " " * 43 + "\033[0m").center(93))
+            print(("\033[41m" + " " * 43 + "\033[0m").center(89))
             print(("\033[41m" + " " * 8 +
                    f"The Winner is... {self.winner}!!!" +
-                   " " * 7 + "\033[0m").center(93))
-            print(("\033[41m" + " " * 43 + "\033[0m").center(93))
+                   " " * 7 + "\033[0m").center(89))
+            print(("\033[41m" + " " * 43 + "\033[0m").center(89))
         else:
             print("self.winner Error, please check and try again!!!")
         # get y or n to begin another match or close the programme
@@ -311,14 +311,14 @@ class GameBoard():
         while try_again != "y" or try_again != "n":
             try_again = input(("\033[103m\033[30m" + " " * 14 +
                                "Try again? (Y/N)" + " " * 13 + "\033[0m\n")
-                              .center(101)).lower()
+                              .center(97)).lower()
             if try_again == "y":
                 self.game_start()
             elif try_again == "n":
                 exit()
             else:
                 print('\033[31mInput invalid, please try again!!!\
-\033[0m'.center(91))
+\033[0m'.center(87))
 
     def print_board(self):
         """
@@ -326,14 +326,14 @@ class GameBoard():
         """
         # first line
         print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
-               " \033[0m").center(99))
+               " \033[0m").center(95))
         # second to last line with border
         for row in [self.board[i * 3:(i + 1) * 3] for i in range(3)]:
             output = [i if i is not None else ' ' for i in row]
             print(("\033[47m\033[30m" + " " * 14 + ' | ' + ' | '.join(output) +
-                  ' | ' + " " * 14 + "\033[0m").center(99))
+                  ' | ' + " " * 14 + "\033[0m").center(95))
             print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
-                   " \033[0m").center(99))
+                   " \033[0m").center(95))
 
     def print_instruction(self):
         """
@@ -342,19 +342,19 @@ class GameBoard():
         self.clear_terminal()
         # banner
         print("\033[103m   \
-\033[30m Let\'s begin a new Tic-Tac-Toe game!    \033[0m".center(99))
+\033[30m Let\'s begin a new Tic-Tac-Toe game!    \033[0m".center(95))
         # game board first line
         print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
-               " \033[0m").center(99))
+               " \033[0m").center(95))
         # second to last line with border
         for row in [[j for j in range(i * 3, (i + 1) * 3)] for i in range(3)]:
             output = [str(i + 1) for i in row]
             print(("\033[47m\033[30m" + " " * 14 + ' | ' + ' | '.join(output) +
-                  ' | ' + " " * 14 + "\033[0m").center(99))
+                  ' | ' + " " * 14 + "\033[0m").center(95))
             print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
-                   " \033[0m").center(99))
+                   " \033[0m").center(95))
         print('')
-        print('Select two player to begin.'.center(85))
+        print('Select two player to begin.'.center(81))
         print('')
 
     def clear_terminal(self):
@@ -370,23 +370,23 @@ class GameBoard():
         self.print_instruction()
         # Create the player 1, and use a while loop to validate input value
         print(("\033[47m\033[30m" + " " * 13 + "Select player1:" +
-              " " * 15 + "\033[0m").center(99))
+              " " * 15 + "\033[0m").center(95))
         valid = False
         while valid is not True:
             player1 = input("1.Player 2.Computer(Easy) \
-3.Computer(Hard)\n".center(87))
+3.Computer(Hard)\n".center(83))
             valid = self.add_new_player(player1, 1)
         # Create the player 2, and use a while loop to validate input value
         print(("\033[47m\033[30m" + " " * 13 + "Select player2:" +
-               " " * 15 + "\033[0m").center(99))
+               " " * 15 + "\033[0m").center(95))
         valid = False
         while valid is not True:
             player2 = input("1.Player 2.Computer(Easy) \
-3.Computer(Hard)\n".center(87))
+3.Computer(Hard)\n".center(83))
             valid = self.add_new_player(player2, 2)
         # Print out the player object in the board
-        print(f"Player 1: {self.player1} use {self.player1.letter}".center(83))
-        print(f"Player 2: {self.player2} use {self.player2.letter}".center(83))
+        print(f"Player 1: {self.player1} use {self.player1.letter}".center(79))
+        print(f"Player 2: {self.player2} use {self.player2.letter}".center(79))
         time.sleep(3)
         self.new_game()
 
