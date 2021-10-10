@@ -49,7 +49,7 @@ class EasyComputer():
         return random.randint(1, len(game_board.board))
 
 
-class NormalComputer():
+class HardComputer():
     """
     A player object control by computer with minimax algorithm
     """
@@ -58,7 +58,7 @@ class NormalComputer():
         self.pname = pname
 
     def __str__(self):
-        return "Computer(Normal)"
+        return "Computer(Hard)"
 
     def make_move(self, game_board):
         """
@@ -180,7 +180,7 @@ class GameBoard():
                 self.player1 = EasyComputer("O", "Player 1")
                 return True
             elif player_type == '3':
-                self.player1 = NormalComputer("O", "Player 1")
+                self.player1 = HardComputer("O", "Player 1")
                 return True
             else:
                 print("Input Invalid, please try again!!!")
@@ -194,7 +194,7 @@ class GameBoard():
                 self.player2 = EasyComputer("X", "Player 2")
                 return True
             elif player_type == '3':
-                self.player2 = NormalComputer("X", "Player 2")
+                self.player2 = HardComputer("X", "Player 2")
                 return True
             else:
                 print("Input Invalid, please try again!!!")
@@ -228,13 +228,17 @@ class GameBoard():
         # loop until there is no empty slots or someone win the match
         while self.empty_slots() > 0:
             self.clear_terminal()
-            print("\033[103m\033[30m***TIC TAC TOE***\033[0m\n".center(72))
+            print(("\033[103m\033[30m" + " " * 13 + "***TIC TAC TOE***" +
+                   " " * 13 + "\033[0m").center(72))
             # print the contents
+            standard_output = f"{turn.pname}'s ({turn.letter}) turn:"
             if turn.letter == "O":
-                letter_output = "\033[34m" + turn.letter + "\033[0m"
+                letter_output = "\033[44m\033[37m" + " " * 12 + \
+                                standard_output + " " * 11 + "\033[0m"
             else:
-                letter_output = "\033[31m" + turn.letter + "\033[0m"
-            print(f"{turn.pname}'s ({letter_output}) turn:".center(68))
+                letter_output = "\033[41m\033[37m" + " " * 12 + \
+                                standard_output + " " * 11 + "\033[0m"
+            print((letter_output).center(72))
             self.print_board()
             # get the move from user or computer
             c_move = self.get_move(turn)
@@ -285,15 +289,28 @@ class GameBoard():
         self.print_board()
         # get the winner and print the relevant text
         if self.winner is None:
+            print("")
             print("\033[103m\033[30m It is a tie!!! \033[0m\n".center(74))
             print("")
+        elif self.winner == "Player 1":
+            print(("\033[44m" + " " * 43 + "\033[0m").center(65))
+            print(("\033[44m" + " " * 8 +
+                   f"The Winner is... {self.winner}!!!" +
+                   " " * 7 + "\033[0m").center(65))
+            print(("\033[44m" + " " * 43 + "\033[0m").center(65))
+        elif self.winner == "Player 2":
+            print(("\033[41m" + " " * 43 + "\033[0m").center(65))
+            print(("\033[41m" + " " * 8 +
+                   f"The Winner is... {self.winner}!!!" +
+                   " " * 7 + "\033[0m").center(65))
+            print(("\033[41m" + " " * 43 + "\033[0m").center(65))
         else:
-            print(f"The Winner is... {self.winner}!!!".center(58))
-            print("")
+            print("self.winner Error, please check and try again!!!")
         # get y or n to begin another match or close the programme
         try_again = None
         while try_again != "y" or try_again != "n":
-            try_again = input("\033[103m\033[30m Try again? (Y/N) \n\033[0m"
+            try_again = input(("\033[103m\033[30m" + " " * 14 +
+                               "Try again? (Y/N)" + " " * 13 + "\033[0m\n")
                               .center(73)).lower()
             if try_again == "y":
                 self.game_start()
@@ -308,14 +325,15 @@ class GameBoard():
         print the current gameboard
         """
         # first line
-        print(("\033[47m\033[30m " + '-'*13 + " \033[0m").center(72))
-        # second to last line with bottom border
+        print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
+               " \033[0m").center(72))
+        # second to last line with border
         for row in [self.board[i * 3:(i + 1) * 3] for i in range(3)]:
             output = [i if i is not None else ' ' for i in row]
-            print(("\033[47m\033[30m" + ' | ' + ' | '.join(output) +
-                  ' | ' + "\033[0m").center(72))
-            print(("\033[47m\033[30m " + '-'*13 + " \033[0m").center(72))
-        print("")
+            print(("\033[47m\033[30m" + " " * 14 + ' | ' + ' | '.join(output) +
+                  ' | ' + " " * 14 + "\033[0m").center(72))
+            print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
+                   " \033[0m").center(72))
 
     def print_instruction(self):
         """
@@ -323,17 +341,18 @@ class GameBoard():
         """
         self.clear_terminal()
         # banner
-        print("\033[103m\
-\033[30m Let\'s begin a new Tic-Tac-Toe game! \033[0m".center(72))
-        print("")
+        print("\033[103m   \
+\033[30m Let\'s begin a new Tic-Tac-Toe game!    \033[0m".center(72))
         # game board first line
-        print(("\033[47m\033[30m " + '-'*13 + " \033[0m").center(72))
+        print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
+               " \033[0m").center(72))
         # second to last line with border
         for row in [[j for j in range(i * 3, (i + 1) * 3)] for i in range(3)]:
             output = [str(i + 1) for i in row]
-            print(("\033[47m\033[30m" + ' | ' + ' | '.join(output) +
-                  ' | ' + "\033[0m").center(72))
-            print(("\033[47m\033[30m " + '-'*13 + " \033[0m").center(72))
+            print(("\033[47m\033[30m" + " " * 14 + ' | ' + ' | '.join(output) +
+                  ' | ' + " " * 14 + "\033[0m").center(72))
+            print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
+                   " \033[0m").center(72))
         print('')
         print('Select two player to begin.'.center(56))
         print('')
@@ -350,18 +369,20 @@ class GameBoard():
         """
         self.print_instruction()
         # Create the player 1, and use a while loop to validate input value
-        print("\033[47m\033[30mSelect player1: \033[0m".center(70))
+        print(("\033[47m\033[30m" + " " * 13 + "Select player1:" +
+              " " * 15 + "\033[0m").center(72))
         valid = False
         while valid is not True:
             player1 = input("1.Player 2.Computer(Easy) \
-3.Computer(Normal)\n".center(60))
+3.Computer(Hard)\n".center(60))
             valid = self.add_new_player(player1, 1)
         # Create the player 2, and use a while loop to validate input value
-        print("\033[47m\033[30mSelect player2: \033[0m".center(70))
+        print(("\033[47m\033[30m" + " " * 13 + "Select player2:" +
+               " " * 15 + "\033[0m").center(72))
         valid = False
         while valid is not True:
             player2 = input("1.Player 2.Computer(Easy) \
-3.Computer(Normal)\n".center(60))
+3.Computer(Hard)\n".center(60))
             valid = self.add_new_player(player2, 2)
         # Print out the player object in the board
         print(f"Player 1: {self.player1} use {self.player1.letter}".center(56))
