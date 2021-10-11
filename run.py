@@ -22,6 +22,8 @@ class Player():
         and request another input
         """
         user_input = None
+        # Use while loop to validate the input
+        # If input invalid raise the exception
         while type(user_input) is not int or user_input < 1 or user_input > 9:
             try:
                 user_input = int(input("Input a number between 1-9: \n"
@@ -31,6 +33,7 @@ class Player():
             except Exception:
                 print('\033[31mInput invalid, please try again!!!\033[0m'
                       .center(73))
+        # Return result
         return user_input
 
 
@@ -62,8 +65,8 @@ class HardComputer():
 
     def make_move(self, game_board):
         """
-        If the board is empty, return a random number as choise,
-        if the board is not empty, calculate the best move and return a number
+        If the board is empty, return a random number as choice,
+        if the board is not empty, call find_move method and return a number
         """
         empty_slots = game_board.empty_slots()
         if empty_slots == 9:
@@ -74,19 +77,21 @@ class HardComputer():
     def find_move(self, state):
         """
         use recursive and minimax algorithm to calculate the best move
-        1. find avaliable move
+        1. find all the avaliable move and store into a array
         2. use for loop to every avaliable move
         3. make a move
-        4. use find_best score to get the best score
+        4. use find_best_score method to get a score of each mvoe
         5. undo the move
         6. compare the best score,
-            if this is the best score, then assign move as best_move
+            if this is the best score, then assign this move as best_move
         7. return the best move
         """
         best_move = 0
         best_score = -math.inf
+        # Find all the avaliable move
         avaliable_move = [i for i, spot in enumerate(state.board)
                           if spot is None]
+        # Use a for loop and fin_best_score method to get the bes move
         for move in avaliable_move:
             state.board[move] = self.letter
             score = self.find_best_score(state, self.letter, False)
@@ -94,14 +99,17 @@ class HardComputer():
             if score > best_score:
                 best_score = score
                 best_move = move
+        # Return result
         return best_move + 1
 
     def find_best_score(self, state, current_letter, isMyTurn):
         """
-        User recursion to find the best score and store the scores into
-        a array, and return the max score if it is computer's turn,
-        else return a minimum score if it is his opponent's turn
+        User recursion to find all the possible result of the game,
+        each result will sum with the empty slot and count as a score,
+        and store the score into a array,
+        then return a sum of the array
         """
+        # Find all the avaliable_move
         avaliable_move = [i for i, spot in enumerate(state.board)
                           if spot is None]
         # base case
@@ -110,7 +118,7 @@ class HardComputer():
         elif state.winner is not None:
             return len(avaliable_move) + 1 if state.winner == self.pname \
                 else -1 * (len(avaliable_move) + 1)
-
+        # Use for loop to count the scores
         scores = []
         for move in avaliable_move:
             # switch user
@@ -136,7 +144,7 @@ class HardComputer():
                 current_letter = "X"
             else:
                 current_letter = "O"
-        # return best score
+        # return the sum of the scores
         return sum(scores)
 
 
@@ -199,7 +207,7 @@ class GameBoard():
             else:
                 print("Input Invalid, please try again!!!")
                 return False
-        # prepared for some unexpected error
+        # prepare for some unexpected error
         else:
             print("Invalid player id!!!")
             return False
@@ -260,9 +268,12 @@ class GameBoard():
 
     def check_winner(self, letter):
         """
-        take a player object as argument and check the self.board array,
-        if player won the match than set the self.winner and call result method
-        if no winner then continue the process
+        take a letter of user instance as argument,
+        and check the self.board array,
+        if the letter connect a line in game board,
+        that means a player win the game and the method will return True,
+        if passed all for loops then return False,
+        means the match still in progress or it is a tie.
         """
         # check all row on the board
         for i in range(3):
@@ -285,19 +296,24 @@ class GameBoard():
         return False
 
     def result(self):
+        """
+        Get the winner value from constructor and print the results
+        """
         self.clear_terminal()
         self.print_board()
-        # get the winner and print the relevant text
+        # if no winner, print message to let user know it is a tie
         if self.winner is None:
             print("")
             print("\033[103m\033[30m It is a tie!!! \033[0m\n".center(95))
             print("")
+        # if player 1 is winner display result with blue background
         elif self.winner == "Player 1":
             print(("\033[44m" + " " * 43 + "\033[0m").center(87))
             print(("\033[44m" + " " * 8 +
                    f"The Winner is... {self.winner}!!!" +
                    " " * 7 + "\033[0m").center(87))
             print(("\033[44m" + " " * 43 + "\033[0m").center(87))
+        # if player 2 is winner display result with red background
         elif self.winner == "Player 2":
             print(("\033[41m" + " " * 43 + "\033[0m").center(87))
             print(("\033[41m" + " " * 8 +
@@ -365,28 +381,32 @@ class GameBoard():
 
     def game_start(self):
         """
-        handle the game process
+        Handle the welcome message and player selection,
+        after create two valid player,
+        the method will call the new game methond
         """
+        # Print the instruction method
         self.print_instruction()
-        # Create the player 1, and use a while loop to validate input value
         print(("\033[47m\033[30m" + " " * 13 + "Select player1:" +
               " " * 15 + "\033[0m").center(93))
+        # Create the player 1, and use a while loop to validate input value
         valid = False
         while valid is not True:
             player1 = input("1.Player 2.Computer(Easy) \
 3.Computer(Hard)\n".center(81))
             valid = self.add_new_player(player1, 1)
-        # Create the player 2, and use a while loop to validate input value
         print(("\033[47m\033[30m" + " " * 13 + "Select player2:" +
                " " * 15 + "\033[0m").center(93))
+        # Create the player 2, and use a while loop to validate input value
         valid = False
         while valid is not True:
             player2 = input("1.Player 2.Computer(Easy) \
 3.Computer(Hard)\n".center(81))
             valid = self.add_new_player(player2, 2)
-        # Print out the player object in the board
+        # Print out the new player instance in the board
         print(f"Player 1: {self.player1} use {self.player1.letter}".center(77))
         print(f"Player 2: {self.player2} use {self.player2.letter}".center(77))
+        # Begin a new game after 3 seconds
         time.sleep(3)
         self.new_game()
 
