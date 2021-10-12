@@ -32,23 +32,31 @@ or leave the game and shut down the programme.
 
 ### Future Feature
 * User will be allowed to enter and display his customer player name.
-* More games will be (or maybe) make.
+* More new games will come (not so soon).
 
 ## Data Model
 
+
 ## Deployment
+The project create by Code Institude's mock terminal for Heroku. \
+Steps to deploy:
+ * Create a new Heroku application
+ * Set the project name as ci-portfolio-project-3
+ * Set deployment method to Github
+ * Add the Python and Node.js as buildpack in setting section
+ * Back to deploy section and press 'Deploy' in Manual deploy
 
 ## Testing
 ### Validator testing
 No errors were returned from pep8online.com
-
-
-
 ![PEP8 test](assets/readme_img/pep8check.png)
 
 ### Bug fixed
-* Try again error
-After the result method called, enter n in the first time the program do not end and repeat the input message.
+* Try again message error
+After the result method called, enter n in the first time the program do not end and repeat the input message. I found there is some problem in the loop and fix the problem.
+* validation message error
+The validatpon message of validate user input show the result not as expected. \
+I found that is because the avaliable_move array is wrong because it should be number in 1-9.
 * Misplaced
 The game board misplace into unexpected place and display an errror result. \
 In the and I decide to use another way to style the game board and contents.
@@ -57,6 +65,7 @@ In the and I decide to use another way to style the game board and contents.
 * If player enter the input in a too short time, the programme will accept the input without display.
 
 ## Credit
+### Code
 * [12 Beginner Python Projects (develop by Kylie Ying)](https://youtu.be/8ext9G7xspg) \
 This video help a lot when I try to make up my idea. \
 I also use some code in these project to find out the avaliable move on the board, \
@@ -78,3 +87,13 @@ I used the tricks in this article to know how to clear the terminal display.
 
 * https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal \
 Through this article I find the way to color the text.
+
+### Tools
+* Git
+* Gitpod
+* Github
+* Heroku
+* PEP8online.com
+
+### Acknowledgment
+Thank you my mentor Daisy McGirr for all support and guidance in the process.
