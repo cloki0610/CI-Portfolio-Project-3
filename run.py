@@ -204,7 +204,8 @@ class GameBoard():
                 self.player1 = HardComputer("O", "Player 1")
                 return True
             else:
-                print("Input Invalid, please try again!!!")
+                print("\033[31mInput Invalid, please try again!!!\033[0m"
+                      .center(87))
                 return False
         # Player 2
         elif player_id == 2:
@@ -218,7 +219,8 @@ class GameBoard():
                 self.player2 = HardComputer("X", "Player 2")
                 return True
             else:
-                print("Input Invalid, please try again!!!")
+                print("\033[31mInput Invalid, please try again!!!\033[0m"
+                      .center(87))
                 return False
         # prepare for some unexpected error
         else:
