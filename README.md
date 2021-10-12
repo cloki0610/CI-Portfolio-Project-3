@@ -88,6 +88,35 @@ Steps to deploy:
 No errors were returned from pep8online.com
 ![PEP8 test](assets/readme_img/pep8check.png)
 
+### Functional testing
+* Player class
+    1. _str_ method  
+    In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
+    I use these code for testing and the text is correctly print as expected. 
+    2. make_move method
+* EasyComputer class
+    1. _str_ method
+    In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
+    I use these code for testing and the text is correctly print as expected. 
+    2. make_move method
+* HardComputer class
+    1. _str_ method
+    In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
+    I use these code for testing and the text is correctly print as expected. 
+    2. make_move method
+    3. find_move and find_best_score
+* Board class
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7. 
+8. 
+9. 
+10. 
+
 ### Bug fixed
 * Try again message error
 After the result method called, enter n in the first time the program do not end and repeat the input message. I found there is some problem in the loop and fix the problem.
