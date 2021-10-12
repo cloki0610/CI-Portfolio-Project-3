@@ -40,7 +40,7 @@ class Player():
                                  .center(81)))
                 if user_input not in avaliable_move:
                     raise ValueError
-            except ValueError():
+            except ValueError:
                 print('\033[31mInput invalid, please try again!!!\033[0m'
                       .center(73))
         # Return result
@@ -227,14 +227,13 @@ class GameBoard():
 
     def empty_slots(self):
         """
-        Use a for loop to check how many empty slots and return a number
+        Use the list comprehensions get all the avaliable array,
+        and return it's length
         """
-        count = 0
-        for i in enumerate(self.board):
-            if self.board[i] is None:
-                count += 1
+        avaliable_move = [i for i, spot in enumerate(self.board)
+                          if spot is None]
 
-        return count
+        return len(avaliable_move)
 
     def new_game(self):
         """
