@@ -83,7 +83,7 @@ class HardComputer():
         """
         empty_slots = game_board.empty_slots()
         if empty_slots == 9:
-            return random.choice([1, 3, 7, 9])
+            return random.choice([1, 3, 5, 7, 9])
         else:
             return self.find_move(game_board)
 

@@ -35,6 +35,26 @@ or leave the game and shut down the programme.
 * More new games will come (not so soon).
 
 ## Data Model
+There are four class models in the programme, \
+three class model are use to create three type of player instance, \
+and the fourth class model use to create the game board the user will use in game.\
+### Players (User or computer)
+Player classes are almost the same, they have two value \
+to store the player name and the letter they will use. \
+They all use a \__str__ magic method print their player type. \
+And a make_move function to send a number to the board instance.
+* Player class use the make_move method to get a number from user. \
+If the number is invalid, a warning message will appear, \
+if the grid user selected is not empty, another warning message will appear.
+* EasyComputer class use make_move method to out put a number between 1-9 without validation.
+* HardComputer class use make_move the call the find_move method to calculate the best move, \
+but if current game board is empty, this method will return a random number of 1,3,5,7 or 9.
+* The find_move method will loop over all the avaliable move, and use algorithm to find move with the highest score, and store as the best move, and return the best move as number in the end.
+
+
+### Game board
+
+
 
 
 ## Deployment
