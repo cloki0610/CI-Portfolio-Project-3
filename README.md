@@ -35,14 +35,12 @@ or leave the game and shut down the programme.
 * More new games will come (not so soon).
 
 ## Data Model
-There are four class models in the programme, \
-three class model are use to create three type of player instance, \
-and the fourth class model use to create the game board the user will use in game.\
+There are four class models in the programme, three class model are use to create three type of player instance, and the fourth class model use to create the game board the user will use in game.
+
+
+
 ### Players (User or computer)
-Player classes are almost the same, they have two value \
-to store the player name and the letter they will use. \
-They all use a \__str__ magic method print their player type. \
-And a make_move function to send a number to the board instance.
+Player classes are almost the same, they have two value to store the player name and the letter they will use. They all use a \__str__ magic method print their player type. And a make_move function to send a number to the board instance.
 * Player class use the make_move method to get a number from user. \
 If the number is invalid, a warning message will appear, \
 if the grid user selected is not empty, another warning message will appear.
@@ -53,8 +51,26 @@ but if current game board is empty, this method will return a random number of 1
 
 
 ### Game board
+GameBoard class have 4 values, board, winner, player1 and player2.
+* board is an 9 elements array to represent the game board.
+* winner is a value to store the winner when one of the player win a game.
+* player1 and player2 is two value use to store two instance who will be a part of the match.
 
 
+And the game board can use 10 methods for the gaming process.
+* The main game function seperate to two method, player_select to decide the player type, \
+and new_game to make a new game begin.
+* The player_select method will call the print_instruction method to print out a board with number 1-9 and the welcome message, then the method will accept two number use to let the programme create player instances by add_new_player method, and call the new_game method to begin new game.
+* The main game function seperate to two method, player_select to decide the player type, \
+and new_game to make a new game begin.
+* Once the inputs are valid the instances will be create and a new game will begin by new_game.
+* Each step the clear_terminal method will be called to clear previous output
+* Then print_board will be call for print out the current status of the game board
+* Then get_move will get two number from player1 and player2 instance to get number for their move
+* After each move, the check_winner will be called to check is there have a winner or not
+* If the board have been filled or one of the player meet the requirement to be the winner,
+the result method will be called to show the result of current.
+* The result method will accept y or n as input to restart a new game, or shut down the programme
 
 
 ## Deployment
@@ -94,18 +110,18 @@ This video also have a sample that let me know how to remake my own version tic 
 
 
 
-* https://levelup.gitconnected.com/mastering-tic-tac-toe-with-minimax-algorithm-3394d65fa88f \
+* [Mastering Tic-Tac-Toe with Minimax Algorithm in Python](https://levelup.gitconnected.com/mastering-tic-tac-toe-with-minimax-algorithm-3394d65fa88f) \
 This is where I have my understanding about the minimax algorithm. \
 And try to solve the problem in my way.
 
 
 
-* https://stackoverflow.com/questions/2084508/clear-terminal-in-python \
+* [Clear terminal in Python](https://stackoverflow.com/questions/2084508/clear-terminal-in-python) \
 I used the tricks in this article to know how to clear the terminal display.
 
 
 
-* https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal \
+* [How to print colored text to the terminal](https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal) \
 Through this article I find the way to color the text.
 
 ### Tools
