@@ -28,7 +28,7 @@ class Player():
         and request another input
         """
         user_input = None
-        avaliable_move = [i for i, spot in enumerate(game_board.board)
+        avaliable_move = [i + 1 for i, spot in enumerate(game_board.board)
                           if spot is None]
         # Use while loop to validate the input
         # If input invalid raise the exception
@@ -42,7 +42,7 @@ class Player():
                     raise ValueError
             except ValueError:
                 print('\033[31mInput invalid, please try again!!!\033[0m'
-                      .center(73))
+                      .center(87))
         # Return result
         return user_input
 
@@ -179,10 +179,10 @@ class GameBoard():
         """
         move = player.make_move(self)
         # get another input if the slot is not null
-        while self.board[move - 1] is not None and self.winner is None:
+        while self.board[move - 1] is not None:
             if isinstance(player, Player):
-                print('\033[31mInput invalid, please try again!!!\033[0m'
-                      .center(73))
+                print('\033[31mYou cannot select a filled grid.\033[0m'
+                      .center(87))
             move = player.make_move(self)
         return move
 

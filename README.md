@@ -8,6 +8,9 @@ vertical, or diagonal row will be the winner.
 For more infomation you can read the article in [Wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe) \
 And this time, user can play the tic tac toe game in the Code Institute mock terminal.
 
+Living website: [PRESS HERE](https://ci-portfolio-project-3.herokuapp.com/)
+Github repository: [PRESS HERE](https://github.com/cloki0610/CI-Portfolio-Project-3)
+
 ## How to play
 First of all, the user should select two player before begin a new game. \
 There are three types of player option: Player, Computer(Easy), and computer(Hard) \
