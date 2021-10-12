@@ -79,6 +79,7 @@ Steps to deploy:
  * Create a new Heroku application
  * Set the project name as ci-portfolio-project-3
  * Set deployment method to Github
+ * In Config Vars inside the setting section, set KEY to 'PORT' and VALUE to '8000' and press ADD to create a new config var.
  * Add the Python and Node.js as buildpack in setting section
  * Back to deploy section and press 'Deploy' in Manual deploy
 
