@@ -1,3 +1,9 @@
+"""
+Required random for random choice and integers,
+os for clear terminal function
+time for deley the output refresh
+math for create a negative infinitive number
+"""
 import random
 import os
 import time
@@ -22,15 +28,19 @@ class Player():
         and request another input
         """
         user_input = None
+        avaliable_move = [i for i, spot in enumerate(game_board.board)
+                          if spot is None]
         # Use while loop to validate the input
         # If input invalid raise the exception
-        while type(user_input) is not int or user_input < 1 or user_input > 9:
+        while (isinstance(user_input, int) is False
+               or user_input < 1
+               or user_input > 9):
             try:
                 user_input = int(input("Input a number between 1-9: \n"
                                  .center(81)))
-                if user_input < 1 or user_input > 9:
+                if user_input not in avaliable_move:
                     raise ValueError
-            except Exception:
+            except ValueError():
                 print('\033[31mInput invalid, please try again!!!\033[0m'
                       .center(73))
         # Return result
@@ -49,6 +59,9 @@ class EasyComputer():
         return "Computer(Easy)"
 
     def make_move(self, game_board):
+        """
+        Get a number from the user instance
+        """
         return random.randint(1, len(game_board.board))
 
 
@@ -102,7 +115,7 @@ class HardComputer():
         # Return result
         return best_move + 1
 
-    def find_best_score(self, state, current_letter, isMyTurn):
+    def find_best_score(self, state, current_letter, is_my_turn):
         """
         User recursion to find all the possible result of the game,
         each result will sum with the empty slot and count as a score,
@@ -136,7 +149,7 @@ class HardComputer():
                     state.winner = "Player 2"
             # use recursion to find all next move
             scores.append(self.find_best_score(state, current_letter,
-                                               not isMyTurn))
+                                               not is_my_turn))
             # undo all  changes
             state.board[move] = None
             state.winner = None
@@ -217,7 +230,7 @@ class GameBoard():
         Use a for loop to check how many empty slots and return a number
         """
         count = 0
-        for i in range(len(self.board)):
+        for i in enumerate(self.board):
             if self.board[i] is None:
                 count += 1
 
@@ -329,7 +342,7 @@ class GameBoard():
                                "Try again? (Y/N)" + " " * 13 + "\033[0m\n")
                               .center(95)).lower()
             if try_again == "y":
-                self.game_start()
+                self.player_select()
             elif try_again == "n":
                 exit()
             else:
@@ -379,7 +392,7 @@ class GameBoard():
         """
         return os.system('cls' if os.name == 'nt' else 'clear')
 
-    def game_start(self):
+    def player_select(self):
         """
         Handle the welcome message and player selection,
         after create two valid player,
@@ -413,5 +426,5 @@ class GameBoard():
 
 if __name__ == "__main__":
     # Create a new game board instance and run the play function
-    game_board = GameBoard()
-    game_board.game_start()
+    board = GameBoard()
+    board.player_select()

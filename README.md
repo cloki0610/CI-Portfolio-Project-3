@@ -18,7 +18,8 @@ try again: after the result method called, enter n in the first time the program
 ## Credit
 * https://youtu.be/8ext9G7xspg \
 This video help a lot when I try to make up my idea. \
-I also use some code in these project to find out the avaliable move on the board. \
+I also use some code in these project to find out the avaliable move on the board, \
+and create the easy computer class. \
 This video also have a sample that let me know how to remake my own version tic tac toe game.
 
 
