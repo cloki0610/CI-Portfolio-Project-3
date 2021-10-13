@@ -1,6 +1,6 @@
 # Try to win: a tic tac toe match
 # Milestone Project 3
-
+![tictactoe outut](assets/readme_img/titactoe.gif)
 ## Introduction
 Tic Tac Toe is a classic paper and pencil game for two players. \
 The player who succeeds in placing three of their marks in a horizontal, \
@@ -8,9 +8,8 @@ vertical, or diagonal row will be the winner.
 For more infomation you can read the article in [Wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe) \
 And this time, user can play the tic tac toe game in the Code Institute mock terminal.
 
-Living website: [PRESS HERE](https://ci-portfolio-project-3.herokuapp.com/)
-Github repository: [PRESS HERE](https://github.com/cloki0610/CI-Portfolio-Project-3)
-
+Living website: https://ci-portfolio-project-3.herokuapp.com/ \
+Github repository: https://github.com/cloki0610/CI-Portfolio-Project-3
 ## How to play
 First of all, the user should select two player before begin a new game. \
 There are three types of player option: Player, Computer(Easy), and computer(Hard) \
@@ -90,32 +89,38 @@ No errors were returned from pep8online.com
 
 ### Functional testing
 * Player class
-    1. _str_ method  
+    1. __ str __ method  
     In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
     I use these code for testing and the text is correctly print as expected. 
-    2. make_move method
+    ![print out the instance by __str__ method](assets/readme_img/print_instance.gif)
+    2. make_move method  
+    This method will return a number from user input, so I can test this method directly on the living website, if the input is invalid, a red warning message "Invalid input, please try again!!!" will print out as following image.
+    ![game board input checking](assets/readme_img/game_board_input_check.gif)
 * EasyComputer class
     1. _str_ method
     In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
     I use these code for testing and the text is correctly print as expected. 
-    2. make_move method
+    2. make_move method  
+    This method will return a number in range 1-9 to the game board instance.  
+    To test the method I modify the code to print out the result as following image.
+    ![Test make move method of EasyComputer class](assets/readme_img/test_easy_computer.gif)
 * HardComputer class
     1. _str_ method
     In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
     I use these code for testing and the text is correctly print as expected. 
-    2. make_move method
-    3. find_move and find_best_score
+    2. make_move method  
+    3. find_move and find_best_score  
 * Board class
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
-8. 
-9. 
-10. 
+    1. 
+    2. 
+    3. 
+    4. 
+    5. 
+    6. 
+    7. 
+    8. 
+    9. 
+    10. 
 
 ### Bug fixed
 * Try again message error
