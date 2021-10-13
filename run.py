@@ -243,49 +243,6 @@ class GameBoard():
 
         return len(avaliable_move)
 
-    def new_game(self):
-        """
-        reset the game board and start a new game
-        """
-        self.clear_terminal()
-        # reset present gameboard
-        self.board = [None for i in range(9)]
-        self.winner = None
-        # assign the current player to a variable
-        turn = self.player1
-        # loop until there is no empty slots or someone win the match
-        while self.empty_slots() > 0:
-            self.clear_terminal()
-            print(("\033[103m\033[30m" + " " * 13 + "***TIC TAC TOE***" +
-                   " " * 13 + "\033[0m").center(93))
-            # print the contents
-            standard_output = f"{turn.pname}'s ({turn.letter}) turn:"
-            if turn.letter == "O":
-                letter_output = "\033[44m\033[37m" + " " * 12 + \
-                                standard_output + " " * 11 + "\033[0m"
-            else:
-                letter_output = "\033[41m\033[37m" + " " * 12 + \
-                                standard_output + " " * 11 + "\033[0m"
-            print((letter_output).center(93))
-            self.print_board()
-            # get the move from user or computer
-            c_move = self.get_move(turn)
-            # add a sign to the board
-            self.board[c_move - 1] = turn.letter
-            # check if someone win the match, then call result
-            if self.check_winner(turn.letter) is True:
-                self.winner = turn.pname
-                self.result()
-            # switch to next turn
-            if turn == self.player1:
-                turn = self.player2
-            else:
-                turn = self.player1
-            time.sleep(2)
-
-        # if no winner and the board is filled, call result method
-        self.result()
-
     def check_winner(self, letter):
         """
         take a letter of user instance as argument,
@@ -314,6 +271,43 @@ class GameBoard():
             return True
         # if pass all loops return false
         return False
+
+    def print_board(self):
+        """
+        print the current gameboard
+        """
+        # first line
+        print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
+               " \033[0m").center(93))
+        # second to last line with border
+        for row in [self.board[i * 3:(i + 1) * 3] for i in range(3)]:
+            output = [i if i is not None else ' ' for i in row]
+            print(("\033[47m\033[30m" + " " * 14 + ' | ' + ' | '.join(output) +
+                  ' | ' + " " * 14 + "\033[0m").center(93))
+            print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
+                   " \033[0m").center(93))
+
+    def print_instruction(self):
+        """
+        Print out the welcome page with instruction
+        """
+        self.clear_terminal()
+        # banner
+        print("\033[103m   \
+\033[30m Let\'s begin a new Tic-Tac-Toe game!    \033[0m".center(93))
+        # game board first line
+        print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
+               " \033[0m").center(93))
+        # second to last line with border
+        for row in [[j for j in range(i * 3, (i + 1) * 3)] for i in range(3)]:
+            output = [str(i + 1) for i in row]
+            print(("\033[47m\033[30m" + " " * 14 + ' | ' + ' | '.join(output) +
+                  ' | ' + " " * 14 + "\033[0m").center(93))
+            print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
+                   " \033[0m").center(93))
+        print('')
+        print('Select two player to begin.'.center(79))
+        print('')
 
     def result(self):
         """
@@ -356,42 +350,48 @@ class GameBoard():
                 print('\033[31mInput invalid, please try again!!!\
 \033[0m'.center(85))
 
-    def print_board(self):
+    def new_game(self):
         """
-        print the current gameboard
-        """
-        # first line
-        print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
-               " \033[0m").center(93))
-        # second to last line with border
-        for row in [self.board[i * 3:(i + 1) * 3] for i in range(3)]:
-            output = [i if i is not None else ' ' for i in row]
-            print(("\033[47m\033[30m" + " " * 14 + ' | ' + ' | '.join(output) +
-                  ' | ' + " " * 14 + "\033[0m").center(93))
-            print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
-                   " \033[0m").center(93))
-
-    def print_instruction(self):
-        """
-        Print out the welcome page with instruction
+        reset the game board and start a new game
         """
         self.clear_terminal()
-        # banner
-        print("\033[103m   \
-\033[30m Let\'s begin a new Tic-Tac-Toe game!    \033[0m".center(93))
-        # game board first line
-        print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
-               " \033[0m").center(93))
-        # second to last line with border
-        for row in [[j for j in range(i * 3, (i + 1) * 3)] for i in range(3)]:
-            output = [str(i + 1) for i in row]
-            print(("\033[47m\033[30m" + " " * 14 + ' | ' + ' | '.join(output) +
-                  ' | ' + " " * 14 + "\033[0m").center(93))
-            print(("\033[47m\033[30m " + " " * 14 + '-'*13 + " " * 14 +
-                   " \033[0m").center(93))
-        print('')
-        print('Select two player to begin.'.center(79))
-        print('')
+        # reset present gameboard
+        self.board = [None for i in range(9)]
+        self.winner = None
+        # assign the current player to a variable
+        turn = self.player1
+        # loop until there is no empty slots or someone win the match
+        while self.empty_slots() > 0:
+            self.clear_terminal()
+            print(("\033[103m\033[30m" + " " * 13 + "***TIC TAC TOE***" +
+                   " " * 13 + "\033[0m").center(93))
+            # print the contents
+            standard_output = f"{turn.pname}'s ({turn.letter}) turn:"
+            if turn.letter == "O":
+                letter_output = "\033[44m\033[37m" + " " * 12 + \
+                                standard_output + " " * 11 + "\033[0m"
+            else:
+                letter_output = "\033[41m\033[37m" + " " * 12 + \
+                                standard_output + " " * 11 + "\033[0m"
+            print((letter_output).center(93))
+            self.print_board()
+            # get the move from user or computer
+            c_move = self.get_move(turn)
+            # add a sign to the board
+            self.board[c_move - 1] = turn.letter
+            # check if someone win the match, then call result
+            if self.check_winner(turn.letter) is True:
+                self.winner = turn.pname
+                self.result()
+            # switch to next turn
+            if turn == self.player1:
+                turn = self.player2
+            else:
+                turn = self.player1
+            time.sleep(2)
+
+        # if no winner and the board is filled, call result method
+        self.result()
 
     def player_select(self):
         """

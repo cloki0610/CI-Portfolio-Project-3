@@ -125,8 +125,8 @@ Few of these methods are not directly use in the game but play a important role 
 ![game board input checking](assets/readme_img/game_board_input_check.gif)
 2. add_new_player method will be called by player_select method for create two player instance in a new tic tac toe game. This method will accept number 1-3 as input to create a new player instance. If input is invalid, a red warning message "Input Invalid, please try again!!!" will print on the terminal as following image.
 ![player_select input check](assets/readme_img/player_select_input_check.gif)
-3. 
-4. 
+3. There are two ways to yest the empty_slots method, first way is run the programme and try to make a tie result in the end of the game, this method should correctly end the while loop and call the result method. Another way is set HardComputer as player1, the HardComputer should return a random number of 1,3,5,7 or 9 because of empty_slots method. After these test, I assume there is no error in this method.
+4. clear_terminal method will be called after the player_select method when new_game, result method is called, and be called after each move. After the testing of the complete programme, I can see it is work as expected.
 5. 
 6. 
 7. 
