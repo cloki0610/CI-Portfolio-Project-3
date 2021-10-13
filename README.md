@@ -116,18 +116,23 @@ No errors were returned from pep8online.com
     3. find_move and find_best_score 
     It is hard to test these two methods because the find_best_score will return a set of data because it using recursion to calculate the result.
     ![Test hard comupter](assets/readme_img/test_hard_computer.gif)
-    All I can do is try to test the method in the game to make sure the computer have try to make the best move in each step.
+    All I can do is try to test the method in the game to make sure the computer have try to make the best move in each step, and return a number between 1 to 9.
+    ![Test find_move method](assets/readme_img/test_find_move.gif)
 * Board class
-    1. 
-    2. 
-    3. 
-    4. 
-    5. 
-    6. 
-    7. 
-    8. 
-    9. 
-    10. 
+There are 10 methods in this class to create a functional game.  
+Few of these methods are not directly use in the game but play a important role in the process.
+1. get_move method will get a number from player to get a move, another validation in this method will check the grid is filled or not, if the grid is filled, another warning message "You cannot select a filled grid." will print on the terminal.
+![game board input checking](assets/readme_img/game_board_input_check.gif)
+2. add_new_player method will be called by player_select method for create two player instance in a new tic tac toe game. This method will accept number 1-3 as input to create a new player instance. If input is invalid, a red warning message "Input Invalid, please try again!!!" will print on the terminal as following image.
+![player_select input check](assets/readme_img/player_select_input_check.gif)
+3. 
+4. 
+5. 
+6. 
+7. 
+8. 
+9. 
+10. 
 
 ### Bug fixed
 * Try again message error

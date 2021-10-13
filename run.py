@@ -227,6 +227,12 @@ class GameBoard():
             print("Invalid player id!!!")
             return False
 
+    def clear_terminal(self):
+        """
+        use this function to clear the terminal when each new function loaded
+        """
+        return os.system('cls' if os.name == 'nt' else 'clear')
+
     def empty_slots(self):
         """
         Use the list comprehensions get all the avaliable array,
@@ -386,12 +392,6 @@ class GameBoard():
         print('')
         print('Select two player to begin.'.center(79))
         print('')
-
-    def clear_terminal(self):
-        """
-        use this function to clear the terminal when each new function loaded
-        """
-        return os.system('cls' if os.name == 'nt' else 'clear')
 
     def player_select(self):
         """
