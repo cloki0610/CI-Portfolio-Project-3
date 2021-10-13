@@ -109,7 +109,14 @@ No errors were returned from pep8online.com
     In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
     I use these code for testing and the text is correctly print as expected. 
     2. make_move method  
-    3. find_move and find_best_score  
+    This method have two thing to test.  
+    First if the game board is blank, the method will return a random number from 1,3,5,7 or 9.
+    ![return random number](assets/readme_img/test_hard_computer_1.png)
+    If the board is not blank, the method will get a number from find_move method.
+    3. find_move and find_best_score 
+    It is hard to test these two methods because the find_best_score will return a set of data because it using recursion to calculate the result.
+    ![Test hard comupter](assets/readme_img/test_hard_computer.gif)
+    All I can do is try to test the method in the game to make sure the computer have try to make the best move in each step.
 * Board class
     1. 
     2. 
