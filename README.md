@@ -149,6 +149,8 @@ I found that is because the avaliable_move array is wrong because it should be n
 * Misplaced
 The game board misplace into unexpected place and display an errror result. \
 In the and I decide to use another way to style the game board and contents.
+* Algorithm problem (solved and improve)
+The minimax algorithm from the resources help me to understand how it works, but to make my own version it make a lots of trouble. First problem is I do not set a correct base case to make a unlimited loops, after I fix the problem the result of the algorithm do not act as I expected because if I use the pseudo code in the article, the programme will only find the slowest way to win the game. In the end instead of use min and max function, I use the sum function to sum up the array to find the move and solve the problem.
 
 ### Bug unfixed
 * If player enter the input in a too short time, the programme will accept the input without display.
