@@ -421,7 +421,7 @@ class GameBoard():
         print(f"Player 1: {self.player1} use {self.player1.letter}".center(77))
         print(f"Player 2: {self.player2} use {self.player2.letter}".center(77))
         # Begin a new game after 3 seconds
-        time.sleep(3)
+        time.sleep(5)
         self.new_game()
 
 
