@@ -376,9 +376,9 @@ class GameBoard():
             print((letter_output).center(93))
             self.print_board()
             # get the move from user or computer
-            c_move = self.get_move(turn)
+            current_move = self.get_move(turn)
             # add a sign to the board
-            self.board[c_move - 1] = turn.letter
+            self.board[current_move - 1] = turn.letter
             # check if someone win the match, then call result
             if self.check_winner(turn.letter) is True:
                 self.winner = turn.pname
