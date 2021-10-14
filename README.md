@@ -34,7 +34,9 @@ or leave the game and shut down the programme.
 * More new games will come (not so soon).
 
 ## Data Model
-There are four class models in the programme, three class model are use to create three type of player instance, and the fourth class model use to create the game board the user will use in game.
+There are four class models in the programme, three class model are use to create three type of player instance, and the fourth class model use to create the game board the user will use in game.  
+The flow chart below can be a reference.
+![flow chart](assets/readme_img/flow_chart.png)
 
 
 
