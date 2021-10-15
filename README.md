@@ -94,10 +94,10 @@ No errors were returned from pep8online.com
     1. __ str __ method  
     In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
     I use these code for testing and the text is correctly print as expected. 
-    ![print out the instance by __str__ method](assets/readme_img/print_instance.gif)
+    ![print out the instance by __str__ method](assets/readme_img/print_instance.gif)  
     2. make_move method  
     This method will return a number from user input, so I can test this method directly on the living website, if the input is invalid, a red warning message "Invalid input, please try again!!!" will print out as following image.
-    ![game board input checking](assets/readme_img/game_board_input_check.gif)
+    ![game board input checking](assets/readme_img/game_board_input_check.gif)  
 * EasyComputer class
     1. _str_ method
     In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
@@ -105,7 +105,7 @@ No errors were returned from pep8online.com
     2. make_move method  
     This method will return a number in range 1-9 to the game board instance.  
     To test the method I modify the code to print out the result as following image.
-    ![Test make move method of EasyComputer class](assets/readme_img/test_easy_computer.gif)
+    ![Test make move method of EasyComputer class](assets/readme_img/test_easy_computer.gif)  
 * HardComputer class
     1. _str_ method
     In player_select method, the print() function on line 421 and 422 will print text by _str_ magic method. \
@@ -113,20 +113,20 @@ No errors were returned from pep8online.com
     2. make_move method  
     This method have two thing to test.  
     First if the game board is blank, the method will return a random number from 1,3,5,7 or 9.
-    ![return random number](assets/readme_img/test_hard_computer_1.png)
+    ![return random number](assets/readme_img/test_hard_computer_1.png)  
     If the board is not blank, the method will get a number from find_move method.
     3. find_move and find_best_score 
     It is hard to test these two methods because the find_best_score will return a set of data because it using recursion to calculate the result.
-    ![Test hard comupter](assets/readme_img/test_hard_computer.gif)
+    ![Test hard comupter](assets/readme_img/test_hard_computer.gif)   
     All I can do is try to test the method in the game to make sure the computer have try to make the best move in each step, and return a number between 1 to 9.
-    ![Test find_move method](assets/readme_img/test_find_move.gif)
+    ![Test find_move method](assets/readme_img/test_find_move.gif)  
 * Board class
 There are 10 methods in this class to create a functional game.  
 Few of these methods are not directly use in the game but play a important role in the process.
 1. get_move method will get a number from player to get a move, another validation in this method will check the grid is filled or not, if the grid is filled, another warning message "You cannot select a filled grid." will print on the terminal.
-![game board input checking](assets/readme_img/game_board_input_check.gif)
+![game board input checking](assets/readme_img/game_board_input_check.gif)  
 2. add_new_player method will be called by player_select method for create two player instance in a new tic tac toe game. This method will accept number 1-3 as input to create a new player instance. If input is invalid, a red warning message "Input Invalid, please try again!!!" will print on the terminal as following image.
-![player_select input check](assets/readme_img/player_select_input_check.gif)
+![player_select input check](assets/readme_img/player_select_input_check.gif)  
 3. There are two ways to yest the empty_slots method, first way is run the programme and try to make a tie result in the end of the game, this method should correctly end the while loop and call the result method. Another way is set HardComputer as player1, the HardComputer should return a random number of 1,3,5,7 or 9 because of empty_slots method. After these test, I assume there is no error in this method.
 4. clear_terminal method will be called after the player_select method when new_game, result method is called, and be called after each move. After the testing of the complete programme, I can see it is work as expected.
 5. check_winner method will check the winner after each move and return a boolean. To test the method I run the game three times for three different results, player1 win the game, player2 win the game or a tie in the end of the game. If the check_winner work as expected, the result method trigger correctly.

@@ -32,9 +32,9 @@ class Player():
                           if spot is None]
         # Use while loop to validate the input
         # If input invalid raise the exception
-        while (isinstance(user_input, int) is False
-               or user_input < 1
-               or user_input > 9):
+        while (isinstance(user_input, int) is False or
+               user_input < 1 or
+               user_input > 9):
             try:
                 user_input = int(input("Input a number between 1-9: \n"
                                  .center(81)))
