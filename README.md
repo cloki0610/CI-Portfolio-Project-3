@@ -5,7 +5,6 @@
 
 
 ## Introduction
--------------------------------------------------------------------
 Tic Tac Toe is a classic paper and pencil game for two players. \
 The player who succeeds in placing three of their marks in a horizontal, \
 vertical, or diagonal row will be the winner.
@@ -18,7 +17,6 @@ Github repository: https://github.com/cloki0610/CI-Portfolio-Project-3
 
 
 ## How to play
-------------------------------------------------------------------- 
 First of all, the user should select two player before begin a new game. \
 There are three types of player option: Player, Computer(Easy), and computer(Hard) \
 Once the players selected, a new tic tac toe game will begin. \
@@ -30,7 +28,6 @@ or leave the game and shut down the programme.
 
 
 ## Feature
--------------------------------------------------------------------
 ### Existing Feature
 * A functional tic tac toe game board
 * A random picked computer player
@@ -47,7 +44,6 @@ or leave the game and shut down the programme.
 
 
 ## Data Model
--------------------------------------------------------------------
 There are four class models in the programme, three class model are use to create three type of player instance, and the fourth class model use to create the game board the user will use in game.  
 The flow chart below can be a reference.
 
@@ -92,7 +88,6 @@ the result method will be called to show the result of current.
 
 
 ## Deployment
--------------------------------------------------------------------
 The project create by Code Institude's mock terminal for Heroku.  
 Steps to deploy:
  * Create a new Heroku application
@@ -103,7 +98,6 @@ Steps to deploy:
  * Back to deploy section and press 'Deploy' in Manual deploy
 
 ## Testing
--------------------------------------------------------------------
 ### Validator testing
 No errors were returned from pep8online.com
 ![PEP8 test](assets/readme_img/pep8check.png)  
@@ -153,23 +147,50 @@ No errors were returned from pep8online.com
 * Board class
 There are 10 methods in this class to create a functional game.  
 Few of these methods are not directly use in the game but play a important role in the process.
-1. get_move method will get a number from player to get a move, another validation in this method will check the grid is filled or not, if the grid is filled, another warning message "You cannot select a filled grid." will print on the terminal.
+    1. get_move method will get a number from player to get a move, another validation in this method will check the grid is filled or not, if the grid is filled, another warning message "You cannot select a filled grid." will print on the terminal.
 ![game board input checking](assets/readme_img/game_board_input_check.gif)  
-2. add_new_player method will be called by player_select method for create two player instance in a new tic tac toe game. This method will accept number 1-3 as input to create a new player instance. If input is invalid, a red warning message "Input Invalid, please try again!!!" will print on the terminal as following image.
+
+
+
+    2. add_new_player method will be called by player_select method for create two player instance in a new tic tac toe game. This method will accept number 1-3 as input to create a new player instance. If input is invalid, a red warning message "Input Invalid, please try again!!!" will print on the terminal as following image.
 ![player_select input check](assets/readme_img/player_select_input_check.gif)  
-3. There are two ways to yest the empty_slots method, first way is run the programme and try to make a tie result in the end of the game, this method should correctly end the while loop and call the result method. Another way is set HardComputer as player1, the HardComputer should return a random number of 1,3,5,7 or 9 because of empty_slots method. After these test, I assume there is no error in this method.
-4. clear_terminal method will be called after the player_select method when new_game, result method is called, and be called after each move. After the testing of the complete programme, I can see it is work as expected.
-5. check_winner method will check the winner after each move and return a boolean. To test the method I run the game three times for three different results, player1 win the game, player2 win the game or a tie in the end of the game. If the check_winner work as expected, the result method trigger correctly.
+
+
+
+    3. There are two ways to yest the empty_slots method, first way is run the programme and try to make a tie result in the end of the game, this method should correctly end the while loop and call the result method. Another way is set HardComputer as player1, the HardComputer should return a random number of 1,3,5,7 or 9 because of empty_slots method. After these test, I assume there is no error in this method.
+
+
+
+    4. clear_terminal method will be called after the player_select method when new_game, result method is called, and be called after each move. After the testing of the complete programme, I can see it is work as expected.
+
+
+
+    5. check_winner method will check the winner after each move and return a boolean. To test the method I run the game three times for three different results, player1 win the game, player2 win the game or a tie in the end of the game. If the check_winner work as expected, the result method trigger correctly.
 ![test result](assets/readme_img/test_check_winner.gif)  
-6. print_board method will print out a 3 * 3 matrix game board in each step in the tic tac toe game, with all previous move the players have made. To test this method I try to make a move in the game and see the print out to confirm it is print the result as expected.
+
+
+
+    6. print_board method will print out a 3 * 3 matrix game board in each step in the tic tac toe game, with all previous move the players have made. To test this method I try to make a move in the game and see the print out to confirm it is print the result as expected.
 ![test the print_board method](assets/readme_img/test_print_board.png)  
-7. print_instruction is a static method and it purpose is print out the welcome message and a board with numbers. We can see the result in the beginning of the programme.
+
+
+
+    7. print_instruction is a static method and it purpose is print out the welcome message and a board with numbers. We can see the result in the beginning of the programme.
 ![test the print_instruction](assets/readme_img/test_print_instruction.png)  
-8. Test the result method is the same way as testing check_winner method, but his time I check the output message and the background color in the result message is or isn't as expected. There also three cases to check these three condition as previous test. And the output seems like as I expected.  
-Another thing I need to check is the retry options, this function require user input y or n to decide begin a new game or shut down the programme. The output and the valid function are all as expected.
+
+
+
+    8. Test the result method is the same way as testing check_winner method, but his time I check the output message and the background color in the result message is or isn't as expected. There also three cases to check these three condition as previous test. And the output seems like as I expected.  
+    Another thing I need to check is the retry options, this function require user input y or n to decide begin a new game or shut down the programme. The output and the valid function are all as expected.
 ![Check retry input](assets/readme_img/retry_input_check.gif)  
-9. new_game method handle the process between result and player_select method. To test this method I run the programme and check its output in each step. In each steip, the method will clear the terminal, require user input or a number from computer. All the content and method run correctly without unexpected output.
-10. player_select included two parts, first part this method will call the print_instruction method for output, and the second part will require user input to decide which two type of player will play the next game. If the input is invalid, an error message will show as image below. When user decide two valid players, there will print out a message about the player type and the letter will represent the player. After the test, all output and validation are as expected.
+
+
+
+    9. new_game method handle the process between result and player_select method. To test this method I run the programme and check its output in each step. In each steip, the method will clear the terminal, require user input or a number from computer. All the content and method run correctly without unexpected output.
+
+
+
+    10. player_select included two parts, first part this method will call the print_instruction method for output, and the second part will require user input to decide which two type of player will play the next game. If the input is invalid, an error message will show as image below. When user decide two valid players, there will print out a message about the player type and the letter will represent the player. After the test, all output and validation are as expected.
 ![test player_select](assets/readme_img/player_select_input_check.gif)  
 
 
@@ -190,7 +211,6 @@ The minimax algorithm from the resources help me to understand how it works, but
 * If player enter the input too frequently, the programme will not display the input on next step because the input will be remove by clear_terminal function.
 
 ## Credit
--------------------------------------------------------------------
 ### Code
 * [12 Beginner Python Projects (develop by Kylie Ying)](https://youtu.be/8ext9G7xspg)  
 This video help a lot when I try to make up my idea. \
